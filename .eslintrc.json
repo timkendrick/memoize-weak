@@ -4,5 +4,8 @@
   "globals": {
     "Map": false,
     "WeakMap": false
+  },
+  "rules": {
+    "vars-on-top": "off"
   }
 }
