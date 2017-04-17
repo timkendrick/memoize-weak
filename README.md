@@ -28,7 +28,7 @@ fn(foo, bar, baz); // Returns cached result
 foo = bar = baz = undefined; // Original foo, bar and baz are now eligible for garbage collection
 ```
 
-## Features
+## Features
 
 - Memoizes multiple arguments of any type
 - Previous arguments are automatically garbage-collected when no longer referenced elsewhere
