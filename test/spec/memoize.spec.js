@@ -11,14 +11,15 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that expects no arguments', () => {
-    const fn = spy(() => 'foo');
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy(() => 'foo');
       memoized = spy(memoize(fn));
     });
 
     describe('AND the memoized function is called', () => {
-      before(() => {
+      beforeEach(() => {
         memoized();
       });
 
@@ -35,11 +36,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again', () => {
-        before(() => {
+        beforeEach(() => {
           memoized();
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
@@ -55,14 +56,15 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that expects a single primitive argument', () => {
-    const fn = spy((...args) => args);
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy((...args) => args);
       memoized = spy(memoize(fn));
     });
 
     describe('AND the memoized function is called with a single primitive argument', () => {
-      before(() => {
+      beforeEach(() => {
         memoized('foo');
       });
 
@@ -79,11 +81,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again with the same argument', () => {
-        before(() => {
+        beforeEach(() => {
           memoized('foo');
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
@@ -96,7 +98,7 @@ describe('memoize', () => {
         });
 
         describe('AND the memoized function is called again with a different argument', () => {
-          before(() => {
+          beforeEach(() => {
             memoized('bar');
           });
 
@@ -117,15 +119,16 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that expects a single object argument', () => {
-    const fn = spy((...args) => args);
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy((...args) => args);
       memoized = spy(memoize(fn));
     });
 
     describe('AND the function is called with a single object argument', () => {
       const foo = { foo: true };
-      before(() => {
+      beforeEach(() => {
         memoized(foo);
       });
 
@@ -142,11 +145,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again with the same argument', () => {
-        before(() => {
+        beforeEach(() => {
           memoized(foo);
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
@@ -160,7 +163,7 @@ describe('memoize', () => {
 
         describe('AND the memoized function is called again with a different argument', () => {
           const bar = { bar: true };
-          before(() => {
+          beforeEach(() => {
             memoized(bar);
           });
 
@@ -181,14 +184,15 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that expects multiple primitive arguments', () => {
-    const fn = spy((...args) => args);
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy((...args) => args);
       memoized = spy(memoize(fn));
     });
 
     describe('AND the memoized function is called with multiple primitive arguments', () => {
-      before(() => {
+      beforeEach(() => {
         memoized('foo', 'bar', 'baz');
       });
 
@@ -205,11 +209,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again with the same arguments', () => {
-        before(() => {
+        beforeEach(() => {
           memoized('foo', 'bar', 'baz');
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
@@ -222,7 +226,7 @@ describe('memoize', () => {
         });
 
         describe('AND the memoized function is called again with different arguments', () => {
-          before(() => {
+          beforeEach(() => {
             memoized('foo', 'bar', 'qux');
           });
 
@@ -243,9 +247,10 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that expects multiple object arguments', () => {
-    const fn = spy((...args) => args);
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy((...args) => args);
       memoized = spy(memoize(fn));
     });
 
@@ -253,7 +258,7 @@ describe('memoize', () => {
       const foo = { foo: true };
       const bar = { bar: true };
       const baz = { baz: true };
-      before(() => {
+      beforeEach(() => {
         memoized(foo, bar, baz);
       });
 
@@ -270,11 +275,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again with the same arguments', () => {
-        before(() => {
+        beforeEach(() => {
           memoized(foo, bar, baz);
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
@@ -288,7 +293,7 @@ describe('memoize', () => {
 
         describe('AND the memoized function is called again with different arguments', () => {
           const qux = { qux: true };
-          before(() => {
+          beforeEach(() => {
             memoized(foo, bar, qux);
           });
 
@@ -309,15 +314,16 @@ describe('memoize', () => {
   });
 
   describe('GIVEN a memoized function that allows null, undefined and false arguments', () => {
-    const fn = spy((...args) => args);
+    let fn;
     let memoized;
-    before(() => {
+    beforeEach(() => {
+      fn = spy((...args) => args);
       memoized = spy(memoize(fn));
     });
 
 
     describe('AND the memoized function is called with null, undefined and false arguments', () => {
-      before(() => {
+      beforeEach(() => {
         memoized(null, undefined, false);
       });
 
@@ -334,11 +340,11 @@ describe('memoize', () => {
       });
 
       describe('AND the memoized function is called again with the same arguments', () => {
-        before(() => {
+        beforeEach(() => {
           memoized(null, undefined, false);
         });
 
-        it('SHOULD only call the underlying function once', () => {
+        it('SHOULD NOT call the underlying function again', () => {
           const actual = fn.callCount;
           const expected = 1;
           expect(actual).to.equal(expected);
