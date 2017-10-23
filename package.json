@@ -1,6 +1,6 @@
 {
   "name": "memoize-weak",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Garbage-collected memoizer for variadic functions",
   "main": "index.js",
   "directories": {
