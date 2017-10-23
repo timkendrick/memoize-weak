@@ -232,6 +232,144 @@ describe('memoize', () => {
     });
   });
 
+  describe('GIVEN a memoized function that expects a single function argument', () => {
+    let fn;
+    let memoized;
+    beforeEach(() => {
+      fn = spy((...args) => args);
+      memoized = spy(memoize(fn));
+    });
+
+    describe('AND the memoized function is called with a single function argument', () => {
+      const foo = () => {};
+      beforeEach(() => {
+        memoized(foo);
+      });
+
+      it('SHOULD call the underlying function with the correct arguments', () => {
+        const actual = fn.firstCall.args;
+        const expected = [foo];
+        expect(actual).to.deep.equal(expected);
+      });
+
+      it('SHOULD return the correct result', () => {
+        const actual = memoized.firstCall.returnValue;
+        const expected = [foo];
+        expect(actual).to.deep.equal(expected);
+      });
+
+      describe('AND the memoized function is called again with the same argument', () => {
+        beforeEach(() => {
+          memoized(foo);
+        });
+
+        it('SHOULD NOT call the underlying function again', () => {
+          const actual = fn.callCount;
+          const expected = 1;
+          expect(actual).to.equal(expected);
+        });
+
+        it('SHOULD return the correct result', () => {
+          const actual = memoized.secondCall.returnValue;
+          const expected = [foo];
+          expect(actual).to.deep.equal(expected);
+        });
+
+        describe('AND the memoized function is called again with a different argument', () => {
+          const bar = () => {};
+          beforeEach(() => {
+            memoized(bar);
+          });
+
+          it('SHOULD call the underlying function with the correct arguments', () => {
+            const actual = fn.secondCall.args;
+            const expected = [bar];
+            expect(actual).to.deep.equal(expected);
+          });
+
+          it('SHOULD return the correct result', () => {
+            const actual = memoized.thirdCall.returnValue;
+            const expected = [bar];
+            expect(actual).to.deep.equal(expected);
+          });
+        });
+      });
+
+      describe('AND the memoized function\'s cache is cleared', () => {
+        beforeEach(() => {
+          memoized.clear();
+        });
+
+        describe('AND the memoized function is called again with the same argument', () => {
+          beforeEach(() => {
+            memoized(foo);
+          });
+
+          it('SHOULD call the underlying function again', () => {
+            const actual = fn.callCount;
+            const expected = 2;
+            expect(actual).to.equal(expected);
+          });
+
+          it('SHOULD return the correct result', () => {
+            const actual = memoized.secondCall.returnValue;
+            const expected = [foo];
+            expect(actual).to.deep.equal(expected);
+          });
+        });
+      });
+
+      describe('AND the memoized function\'s cache for that argument is cleared', () => {
+        beforeEach(() => {
+          memoized.clear(foo);
+        });
+
+        describe('AND the memoized function is called again with the same argument', () => {
+          beforeEach(() => {
+            memoized(foo);
+          });
+
+          it('SHOULD call the underlying function again', () => {
+            const actual = fn.callCount;
+            const expected = 2;
+            expect(actual).to.equal(expected);
+          });
+
+          it('SHOULD return the correct result', () => {
+            const actual = memoized.secondCall.returnValue;
+            const expected = [foo];
+            expect(actual).to.deep.equal(expected);
+          });
+        });
+      });
+
+      describe('AND the memoized function\'s cache for a different argument is cleared', () => {
+        const bar = () => {};
+        beforeEach(() => {
+          memoized.clear(bar);
+        });
+
+        describe('AND the memoized function is called again with the same argument', () => {
+          beforeEach(() => {
+            memoized(foo);
+          });
+
+          it('SHOULD NOT call the underlying function again', () => {
+            const actual = fn.callCount;
+            const expected = 1;
+            expect(actual).to.equal(expected);
+          });
+
+          it('SHOULD return the correct result', () => {
+            const actual = memoized.secondCall.returnValue;
+            const expected = [foo];
+            expect(actual).to.deep.equal(expected);
+          });
+        });
+      });
+    });
+  });
+
   describe('GIVEN a memoized function that expects a single object argument', () => {
     let fn;
     let memoized;
