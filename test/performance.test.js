@@ -5,7 +5,7 @@ const prevMemoize = require("memoize-weak");
 const nextMemoize = require("../lib/memoize");
 
 describe("memoize performance", () => {
-  describe("GIVEN a memoized function that expects a single primitive argument", () => {
+  describe("GIVEN a memoized function that allows a single primitive argument", () => {
     it("SHOULD memoize faster than previous version", function() {
       this.timeout(20000);
 
@@ -60,7 +60,7 @@ describe("memoize performance", () => {
     });
   });
 
-  describe("GIVEN a memoized function that expects two primitive argument", () => {
+  describe("GIVEN a memoized function that allows two primitive argument", () => {
     it("SHOULD memoize faster than previous version", function() {
       this.timeout(20000);
 
