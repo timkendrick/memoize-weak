@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 
-const memoize = require("../..");
+const memoize = require("../");
 
 describe("memoize-weak", () => {
   it("Should export a function", () => {

@@ -1,7 +1,6 @@
 const { expect } = require("chai");
 const { spy } = require("sinon");
-
-const memoize = require("../../lib/memoize");
+const memoize = require("../lib/memoize");
 
 describe("memoize", () => {
   it("SHOULD return a function", () => {
