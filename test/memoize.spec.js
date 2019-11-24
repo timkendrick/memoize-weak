@@ -830,7 +830,7 @@ describe("memoize", () => {
     });
   });
 
-  describe("GIVEN a memoized function that allows null, undefined and false arguments", () => {
+  describe("GIVEN a memoized function that expects null, undefined and false arguments", () => {
     let fn;
     let memoized;
     beforeEach(() => {
