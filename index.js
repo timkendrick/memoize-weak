@@ -1,1 +1,1 @@
-module.exports = require('./lib/memoize');
+module.exports = require("./lib/memoize");
