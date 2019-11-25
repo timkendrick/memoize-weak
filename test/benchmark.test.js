@@ -62,7 +62,7 @@ describe("memoize-weak v1.1 performance", () => {
     });
   });
 
-  describe("GIVEN a memoized function that expects a single primitive argument", () => {
+  describe("GIVEN a memoized function that expects one primitive argument", () => {
     it("SHOULD memoize faster than previous version", function() {
       this.timeout(20000);
 
@@ -113,7 +113,7 @@ describe("memoize-weak v1.1 performance", () => {
     });
   });
 
-  describe("GIVEN a memoized function that expects two primitive argument", () => {
+  describe("GIVEN a memoized function that expects two primitive arguments", () => {
     it("SHOULD memoize faster than previous version", function() {
       this.timeout(60000);
 
