@@ -35,22 +35,22 @@ describe("memoize-weak v1.1 performance", () => {
       memoized1x1(arg);
 
       const suite = new Benchmark.Suite();
-      suite.add("fast-memoize v2.5", () => {
+      suite.add("fast-memoize@2.5.1", () => {
         for (let i = 0; i < 10000; i++) {
           memoizedFast(arg);
         }
       });
-      suite.add("memoize-one v5.1", () => {
+      suite.add("memoize-one@5.1.1", () => {
         for (let i = 0; i < 10000; i++) {
           memoizedOne(arg);
         }
       });
-      suite.add("memoize-weak v1.0", () => {
+      suite.add("memoize-weak@1.0.2", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x0(arg);
         }
       });
-      suite.add("memoize-weak v1.1", () => {
+      suite.add("memoize-weak@1.1.0", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x1(arg);
         }
@@ -58,7 +58,7 @@ describe("memoize-weak v1.1 performance", () => {
       suite.on("cycle", mlogcycle);
       suite.run();
 
-      expect(suite.filter("fastest")[0].name).equal("memoize-weak v1.1");
+      expect(suite.filter("fastest")[0].name).equal("memoize-weak@1.1.0");
     });
   });
 
@@ -67,13 +67,13 @@ describe("memoize-weak v1.1 performance", () => {
       this.timeout(20000);
 
       const suite = new Benchmark.Suite();
-      suite.add("memoize-weak v1.0", () => {
+      suite.add("memoize-weak@1.0.2", () => {
         const memoized = memoize1x0(() => {});
         for (let i = 0; i < 10000; i++) {
           memoized(i);
         }
       });
-      suite.add("memoize-weak v1.1", () => {
+      suite.add("memoize-weak@1.1.0", () => {
         const memoized = memoize1x1(() => {});
         for (let i = 0; i < 10000; i++) {
           memoized(i);
@@ -82,7 +82,7 @@ describe("memoize-weak v1.1 performance", () => {
       suite.on("cycle", mlogcycle);
       suite.run();
 
-      expect(suite.filter("fastest")[0].name).equal("memoize-weak v1.1");
+      expect(suite.filter("fastest")[0].name).equal("memoize-weak@1.1.0");
     });
 
     it("SHOULD return result faster than previous version", function() {
@@ -96,12 +96,12 @@ describe("memoize-weak v1.1 performance", () => {
       }
 
       const suite = new Benchmark.Suite();
-      suite.add("memoize-weak v1.0", () => {
+      suite.add("memoize-weak@1.0.2", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x0(i);
         }
       });
-      suite.add("memoize-weak v1.1", () => {
+      suite.add("memoize-weak@1.1.0", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x1(i);
         }
@@ -109,7 +109,7 @@ describe("memoize-weak v1.1 performance", () => {
       suite.on("cycle", mlogcycle);
       suite.run();
 
-      expect(suite.filter("fastest")[0].name).equal("memoize-weak v1.1");
+      expect(suite.filter("fastest")[0].name).equal("memoize-weak@1.1.0");
     });
   });
 
@@ -118,13 +118,13 @@ describe("memoize-weak v1.1 performance", () => {
       this.timeout(60000);
 
       const suite = new Benchmark.Suite();
-      suite.add("memoize-weak v1.0", () => {
+      suite.add("memoize-weak@1.0.2", () => {
         const memoized = memoize1x0(() => {});
         for (let i = 0; i < 10000; i++) {
           memoized(i, i + 1);
         }
       });
-      suite.add("memoize-weak v1.1", () => {
+      suite.add("memoize-weak@1.1.0", () => {
         const memoized = memoize1x1(() => {});
         for (let i = 0; i < 10000; i++) {
           memoized(i, i + 1);
@@ -133,7 +133,7 @@ describe("memoize-weak v1.1 performance", () => {
       suite.on("cycle", mlogcycle);
       suite.run();
 
-      expect(suite.filter("fastest")[0].name).equal("memoize-weak v1.1");
+      expect(suite.filter("fastest")[0].name).equal("memoize-weak@1.1.0");
     });
 
     it("SHOULD return result faster than previous version", function() {
@@ -147,12 +147,12 @@ describe("memoize-weak v1.1 performance", () => {
       }
 
       const suite = new Benchmark.Suite();
-      suite.add("memoize-weak v1.0", () => {
+      suite.add("memoize-weak@1.0.2", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x0(i, i + 1);
         }
       });
-      suite.add("memoize-weak v1.1", () => {
+      suite.add("memoize-weak@1.1.0", () => {
         for (let i = 0; i < 10000; i++) {
           memoized1x1(i, i + 1);
         }
@@ -160,7 +160,7 @@ describe("memoize-weak v1.1 performance", () => {
       suite.on("cycle", mlogcycle);
       suite.run();
 
-      expect(suite.filter("fastest")[0].name).equal("memoize-weak v1.1");
+      expect(suite.filter("fastest")[0].name).equal("memoize-weak@1.1.0");
     });
   });
 });
