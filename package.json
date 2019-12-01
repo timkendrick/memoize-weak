@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "test": "prettier --check '**/*.js' '**/*.ts' && eslint . && mocha --reporter spec",
+    "posttest": "find test/benchmarks/*.js -exec node {} \\;",
     "benchmark": "find test/benchmarks/*.js -exec node {} \\;"
   },
   "repository": {
