@@ -1,11 +1,3 @@
 {
-  "root": true,
-  "extends": "airbnb-base/legacy",
-  "globals": {
-    "Map": false,
-    "WeakMap": false
-  },
-  "rules": {
-    "vars-on-top": "off"
-  }
+  "extends": ["airbnb-base", "plugin:prettier/recommended"]
 }
