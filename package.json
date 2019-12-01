@@ -2,17 +2,17 @@
   "name": "memoize-weak",
   "version": "1.1.0",
   "description": "Garbage-collected memoizer for variadic functions",
-  "main": "index.js",
+  "main": "lib/memoize.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "files": [
-    "index.js",
     "lib"
   ],
   "scripts": {
-    "test": "prettier --check '**/*.js' '**/*.ts' && mocha --reporter spec"
+    "test": "prettier --check '**/*.js' '**/*.ts' && eslint . && mocha --reporter spec",
+    "benchmark": "find test/benchmarks/*.js -exec node {} \\;"
   },
   "repository": {
     "type": "git",
@@ -34,12 +34,16 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "chai": "^3.5.0",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "fast-memoize": "2.5.1",
     "memoize-one": "5.1.1",
     "memoize-weak": "1.0.2",
     "mocha": "^3.0.0",
-    "mocha-logger": "^1.0.6",
-    "prettier": "1.19.1",
+    "prettier": "^1.19.1",
     "sinon": "^1.0.0"
   }
 }
